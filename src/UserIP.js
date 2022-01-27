@@ -109,10 +109,10 @@ export class UserIP extends LitElement {
       })
       .then(data => {
         this.ip = data.ip;
-        this.cityYouAreIn = data.cityYouAreIn;
-        this.countryYouAreIn = data.countryYouAreIn;
+        this.city = data.city;
+        this.country = data.country;
 
-        this.location = `${data.cityYouAreIn}, ${data.countryYouAreIn}`;
+        this.location = `${data.city}, ${data.country}`;
 
         //this.location = "Your location is: " + data.cityYouAreIn+ ", " + data.countryYouAreIn; //understood that the data. references the getproperties method
         return data;
