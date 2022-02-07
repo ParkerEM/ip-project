@@ -63,6 +63,18 @@
     render(html`<button @click="${addIpTag}">Call the IP API</button>`, document.querySelector("#demo"));
   </script>
   <div id="demo"></div>
+
+  <br>
+  <input id="in" type="text" placeholder="Enter a page number" />
+  <button id="load">Search NASA</button>
+  <nasa-image-search id="img"></nasa-image-search>
+  <script type="module">
+    import "./src/Nasa.js";
+    document.querySelector('#load').addEventListener('click', e => {
+      document.querySelector('#img').page = document.querySelector('#in').value;
+      document.querySelector('#img').getData();
+    });
+  </script>
 </body>
 
 </html>
