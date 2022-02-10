@@ -18,11 +18,14 @@ export class UserIP extends LitElement {
     super();
     // default values
     this.ip = null;
+    this.location = null;
+    this.cityYouAreIn = null;
+    this.countryYouAreIn = null;
     // variables can be stored on "this" as the class we're working on is like a
     // Java or other Object Oriented Programming Language
     // so for this one, we're storing a reference to the API endpoint
     // so that if it ever changed it would be easier to update
-    this.ipLookUp = 'https://ip-fast.com/api/ip/?format=json&location=False';
+    this.ipLookUp = 'https://ip-fast.com/api/ip/?format=json&location=True';
   }
 
   // properties that you wish to use as data in HTML, CSS, and the updated life-cycle
@@ -109,6 +112,8 @@ export class UserIP extends LitElement {
       })
       .then(data => {
         this.ip = data.ip;
+        this.cityYouAreIn = data.city;
+        this.countryYouAreIn = data.country;
         this.city = data.city;
         this.country = data.country;
 

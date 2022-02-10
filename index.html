@@ -63,6 +63,32 @@
     render(html`<button @click="${addIpTag}">Call the IP API</button>`, document.querySelector("#demo"));
   </script>
   <div id="demo"></div>
+  <br/>
+
+  <label for="page">Enter a page number:</label>
+  <input id="page" type="number" value="1" />
+  <br/>
+
+  <label for="start">Enter a start date:</label>
+  <input id="start" type="number" value="2000" />
+  <br/>
+
+  <label for="end">Enter an end date:</label>
+  <input id="end" type="number" value="2020" />
+  <br/>
+
+  <button id="load">Search NASA</button>
+  <nasa-image-search id="img"></nasa-image-search>
+
+  <script type="module">
+    import "./src/Nasa.js";
+    document.querySelector('#load').addEventListener('click', e => {
+      document.querySelector('#img').page = document.querySelector('#page').value;
+      document.querySelector('#img').startDate = document.querySelector('#start').value;
+      document.querySelector('#img').endDate = document.querySelector('#end').value;
+      document.querySelector('#img').getData();
+    });
+  </script>
 </body>
 
 </html>
