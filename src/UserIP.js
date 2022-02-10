@@ -114,6 +114,8 @@ export class UserIP extends LitElement {
         this.ip = data.ip;
         this.cityYouAreIn = data.city;
         this.countryYouAreIn = data.country;
+        this.city = data.city;
+        this.country = data.country;
 
         this.location = `${data.city}, ${data.country}`;
 
