@@ -10,21 +10,25 @@ export class NasaImageSearch extends LitElement {
     super();
     this.term = "Moon landing";
     this.images = [];
-    this.page = 1;
+    this.page = 3;
+    this.startDate = 2000;
+    this.endDate = 2020;
   }
 
    static properties = {
      term: {},
      images: {},
-     page: {}
+     page: {},
+     startDate: {},
+     endDate: {}
    };
    
-   firstUpdated(changedProperties) {
+   /*firstUpdated(changedProperties) {
      if (super.firstUpdated) {
        super.firstUpdated(changedProperties);
      }
      this.getData();
-   }
+   }*/
 
    updated(changedProperties) {
     changedProperties.forEach((oldValue, propName) => {
@@ -45,7 +49,7 @@ export class NasaImageSearch extends LitElement {
   }
 
   async getData() {
-    fetch(`https://images-api.nasa.gov/search?q=${this.term}&page=${this.page}&media_type=image`)
+    fetch(`https://images-api.nasa.gov/search?q=${this.term}&page=${this.page}&year_start=${this.startDate}&year_end=${this.endDate}&media_type=image`)
       .then(resp => {
         if (resp.ok) {
           return resp.json();
@@ -71,7 +75,7 @@ export class NasaImageSearch extends LitElement {
     return html`
             ${this.images.map(
               item => html`
-              <accent-card image-src="${item.image}" accent-color="black" horizontal style="max-width:600px;">
+              <accent-card image-src="${item.image}" accent-color="black" horizontal style="max-width:1000px;">
                 <div slot="heading">${item.title}</div>
                 <div slot="content">Description: ${item.description}</div> 
                 <div slot="content">Photography: ${item.creator}</div>
