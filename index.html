@@ -65,6 +65,10 @@
   <div id="demo"></div>
   <br/>
 
+  <label for="term">Enter a search term:</label>
+  <input id="term" type="text" value="Moon Landing" />
+  <br/>
+
   <label for="page">Enter a page number:</label>
   <input id="page" type="number" value="1" />
   <br/>
@@ -83,6 +87,7 @@
   <script type="module">
     import "./src/Nasa.js";
     document.querySelector('#load').addEventListener('click', e => {
+      document.querySelector('#img').term = document.querySelector('#term').value;
       document.querySelector('#img').page = document.querySelector('#page').value;
       document.querySelector('#img').startDate = document.querySelector('#start').value;
       document.querySelector('#img').endDate = document.querySelector('#end').value;
