@@ -81,11 +81,18 @@
   <input id="end" type="number" value="2020" />
   <br/>
 
+  <label for="data">Return data only</label>
+  <input type="checkbox" id="data" name="data" autocomplete="off">
+  <br/>
+
   <button id="load">Search NASA</button>
   <nasa-image-search id="img"></nasa-image-search>
 
   <script type="module">
     import "./src/Nasa.js";
+    document.querySelector('#data').addEventListener('click', e => {
+      document.querySelector('#img').dataOnly = document.querySelector('#data').checked;
+    });
     document.querySelector('#load').addEventListener('click', e => {
       document.querySelector('#img').term = document.querySelector('#term').value;
       document.querySelector('#img').page = document.querySelector('#page').value;

@@ -13,6 +13,7 @@ export class NasaImageSearch extends LitElement {
     this.page = 3;
     this.startDate = 2000;
     this.endDate = 2020;
+    this.dataOnly = false;
   }
 
    static properties = {
@@ -20,7 +21,8 @@ export class NasaImageSearch extends LitElement {
      images: {},
      page: {},
      startDate: {},
-     endDate: {}
+     endDate: {},
+     dataOnly: {},
    };
    
    /*firstUpdated(changedProperties) {
@@ -73,18 +75,32 @@ export class NasaImageSearch extends LitElement {
 
    render() {
     return html`
+      ${this.dataOnly === true
+        ? html`
+          <ul>
             ${this.images.map(
               item => html`
+                <li>
+                  ${item.title} - ${item.description} - ${item.creator}
+                </li>
+              `
+            )}
+          </ul>
+        `      
+        : html`
+          ${this.images.map(
+            item => html`
               <accent-card image-src="${item.image}" accent-color="black" horizontal style="max-width:1000px;">
                 <div slot="heading">${item.title}</div>
                 <div slot="content">Description: ${item.description}</div> 
                 <div slot="content">Photography: ${item.creator}</div>
               </accent-card>
-            `)}
-          `}
-    ;
+            `
+          )}
+        `
+      }
+    `;    
+  }
 }
 
- customElements.define(NasaImageSearch.tag, NasaImageSearch);
- 
-
+customElements.define(NasaImageSearch.tag, NasaImageSearch);
